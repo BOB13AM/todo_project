@@ -1,3 +1,4 @@
+//Waiting for the DOM to Load 
 document.addEventListener('DOMContentLoaded', function() {
 
     //by default load the home page content
