@@ -24,7 +24,7 @@ Admin User:
 
 10- Upon clicking on a user, the user's history will show. displaying each individual task, date 
 
-11- If the task was translated it will be marked as green with a title ("User translated this task at least once")
+11- If the task was translated it will be marked as green with a title ("User translated this task")
 
 12- Upon clicking on the home button the user will be redirected to the home page
 
