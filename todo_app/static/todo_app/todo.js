@@ -144,7 +144,7 @@ function userpage(id){
             <li class="todo_li">
                 <div class="card">
                 <div class="card-header" style="background-color: lightgreen;">
-                    <b>User translated this task at least once</b>
+                    <b>User translated this task</b>
                 </div>
                 <div class="card-body">
                 <h5 class="card-title">${element.body} <small style="float:right;">${element.timestamp}</small></h5>
