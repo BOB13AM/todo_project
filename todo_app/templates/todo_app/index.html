@@ -1,0 +1,42 @@
+{% extends "todo_app/layout.html" %}
+{% load static %}
+
+{% block head %}
+<nav class="navbar sticky-top bg-body-tertiary" style="background-color: lightsteelblue;">
+    <div class="container-fluid">
+        <h2>Hello, {{request.user.username}}!</h2>
+        <a class="btn btn-sm btn-primary" href="{% url 'logout' %}">Log Out</a>
+    </div>
+  </nav>
+{% endblock %}
+
+{% block body %}
+    <br>
+
+    {%if request.user.is_staff %}
+    <hr>
+    <div style="display:none;">
+    {%else%}
+    <div style="display:block;">
+    {%endif%}
+    <h4 class="marg_btm">Your To Do List</h4>
+        <form id="todo-form">
+            <div class="input-group mb-3 marg_btm">
+                <input required autofocus id="task" type="text" class="form-control" placeholder="New Task">
+                <input class="btn btn-outline-secondary" type="submit" id="button-addon2" value="Add">
+            </div>
+        </form>
+    </div>
+
+
+    <ul id="todo-content"></ul>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="admin-content"></div>
+    <div id="user-div"><h3 id="user-name"></h3><a class="btn btn-sm btn-outline-primary marg_btm" href="{% url 'index' %}">Home</a><ul id="user-content"></ul></div>
+
+    <hr>
+    
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'todo_app/todo.js' %}"></script>
+{% endblock %}

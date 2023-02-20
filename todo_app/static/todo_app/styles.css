@@ -1,0 +1,23 @@
+
+.todo_li{
+    margin: 0.8%;
+    list-style-type: none;
+    box-shadow: 0 0 1px rgb(0, 0, 0);
+    transition: ease-in 280ms;
+    
+}
+.todo_li:hover{
+    transition: ease-out 280ms;
+    transform: scale(1.009);
+    box-shadow: 0 0 3px rgb(0, 0, 0);
+
+}
+
+.box{
+    display: flex;
+    width: 100%;
+}
+
+.marg_btm{
+    margin-bottom:3%;
+}
