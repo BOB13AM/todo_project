@@ -11,7 +11,7 @@ from googletrans import Translator
 
 from .models import *
 
-
+# index unction loads the home page
 def index(request):
      # Authenticated users view their home page
     if request.user.is_authenticated:
@@ -21,6 +21,7 @@ def index(request):
     else:
         return HttpResponseRedirect(reverse("login"))
 
+#content function gets the content from the models and return result as JsonResponse 
 @csrf_exempt
 @login_required
 def content(request):
@@ -34,6 +35,7 @@ def content(request):
         user_content = current_user.tasks.all()
         return JsonResponse([content.serialize() for content in user_content], safe=False)
 
+#Update function updates the task translated field in the models and return result as JsonResponse 
 @csrf_exempt
 @login_required
 def update (request,taskid):
@@ -52,6 +54,7 @@ def update (request,taskid):
         #returning that the process was successful
         return JsonResponse({"message": "Task updated successfully."}, status=201)
 
+#Create function creates the task and save it in the model
 @csrf_exempt
 @login_required
 def create(request):
@@ -71,6 +74,7 @@ def create(request):
         else:
             return JsonResponse({"error": "Missing Info"}, status=400)
 
+#translation function translate the content using the google api return result as JsonResponse 
 @csrf_exempt
 @login_required
 def translation(request,target_content):
@@ -83,6 +87,7 @@ def translation(request,target_content):
         #returning the translated text     
         return JsonResponse([new_content], safe=False)
 
+#delete function delete the target task from the model
 @csrf_exempt
 @login_required
 def delete(request,id):
@@ -100,7 +105,7 @@ def delete(request,id):
         return JsonResponse({"error": "Missing Task"}, status=400)
 
 
-
+#userpage function gets the user history and return result as JsonResponse 
 @csrf_exempt
 @login_required
 def userpage(request,userid):
@@ -112,7 +117,7 @@ def userpage(request,userid):
     return JsonResponse([all_content.serialize() for all_content in user_content], safe=False)
 
 
-
+#login_view function login the users
 def login_view(request):
     #check for method if its post 
     if request.method=="POST":
@@ -136,12 +141,13 @@ def login_view(request):
     else:
         return render(request, "todo_app/login.html")
 
+#logout_view function logout the users
 def logout_view(request):
     #using the logout function to logout current user then redirect the user to login page  
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
-
+#register function register the users in the model and log them in afterwards
 def register(request):
     if request.method == "POST":
         # get the values of the user name and password and confirm from user
