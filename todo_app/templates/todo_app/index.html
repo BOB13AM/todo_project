@@ -15,14 +15,16 @@
 
     {%if request.user.is_staff %}
     <hr>
+    <h4 class="marg_btm">All Users</h4>
     <div style="display:none;">
     {%else%}
+    <h4 class="marg_btm">Your To Do List</h4>
     <div style="display:block;">
     {%endif%}
-    <h4 class="marg_btm">Your To Do List</h4>
+
         <form id="todo-form">
             <div class="input-group mb-3 marg_btm">
-                <input required autofocus id="task" type="text" class="form-control" placeholder="New Task">
+                <input required autofocus id="task" type="text" class="form-control" placeholder="New Task - Translate Any Language to French">
                 <input class="btn btn-outline-secondary" type="submit" id="button-addon2" value="Add">
             </div>
         </form>

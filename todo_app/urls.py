@@ -11,5 +11,6 @@ urlpatterns = [
     path("content", views.content, name="content"),
     path("userpage/<int:userid>", views.userpage, name="userpage"),
     path("update/<int:taskid>", views.update, name="update"),
-    path("translation/<str:target_content>", views.translation, name="translation")
+    path("translation/<str:target_content>", views.translation, name="translation"),
+    path("delete/<int:id>", views.delete, name="delete")
 ]

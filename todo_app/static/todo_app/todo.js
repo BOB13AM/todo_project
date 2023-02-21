@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="card-body">
                         <div class="card-title"><h5 style="float:right;"><small>${element.timestamp}</small></h5><h5 class="card-content" data-content="${element.body}">${element.body}</h5></div>
                         <button class="btn btn-primary translate-btn" style="margin-top:1%;" value="${element.id}">Translate</a>
+                        <button class="btn btn-danger delete-btn" style="margin-top:1%; float:right;" value="${element.id}">Delete</a>
                         </div>
                         </div>
                     `
@@ -75,8 +76,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     //appending the li to ul as a child 
                     document.querySelector('#todo-content').appendChild(li);
                     
-                    //get all the buttons with translate class 
+                    //get all the buttons with translate-btn class 
                     let all = document.querySelectorAll(".translate-btn")
+                    //get all the buttons with delete-btn class 
+                    let all_delete = document.querySelectorAll(".delete-btn")
                     //get all the content of the cards to translate 
                     let title = document.querySelectorAll(".card-content")
                    
@@ -101,7 +104,16 @@ document.addEventListener('DOMContentLoaded', function() {
                                 //ge the id value of the task and then send it to the js translated_update function
                                 let id = all[i].value
                                 translated_update(id);
-                        });        
+                        }); 
+                        all_delete[i].addEventListener('click', function(){
+                            //ge the id value of the task and then send it to the js delete function
+                            let id = all_delete[i].value
+                              //fetch the delete view 
+                              fetch(`/delete/${id}`)
+                              //wait for the response and load home page for the latest updated list 
+                              .then(() => load_home())
+                        });
+                        
                      }
                      
                 }

@@ -77,11 +77,29 @@ def translation(request,target_content):
         #creating a translator object of the Translator class
         translator = Translator()
         #passing the content to the translate method(accessing this method by the translator) in the Translator class 
-        result = translator.translate(target_content, dest='tl')
+        result = translator.translate(target_content, dest='fr')
         #get the result text only and put it in a variable
         new_content = result.text
         #returning the translated text     
         return JsonResponse([new_content], safe=False)
+
+@csrf_exempt
+@login_required
+def delete(request,id):
+    #let task_id variable equal to the task id
+    task_id = id
+    #get the task from the task model to delete it
+    target_task = task.objects.get(pk=task_id)
+    if target_task :
+        #delete the target task
+        target_task.delete()
+        #get response message if success
+        return JsonResponse({"message": "Task Deleted successfully."}, status=201)
+    else:
+        #get response message if faild
+        return JsonResponse({"error": "Missing Task"}, status=400)
+
+
 
 @csrf_exempt
 @login_required
