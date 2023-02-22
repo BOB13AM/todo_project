@@ -1,8 +1,5 @@
 //Waiting for the DOM to Load 
 document.addEventListener('DOMContentLoaded', function() {
-
-    //by default load the home page content
-    load_home();
     
     //onsubmiting the form fetch the create view and then reload the page to 
     document.querySelector('#todo-form').onsubmit = () =>{
@@ -24,6 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
         load_home();
       }); 
     }
+
+    //by default load the home page content
+    load_home();
 
     //load the home page for admin/normal users 
     function load_home(){
@@ -192,5 +192,5 @@ function delete_task(id){
     //fetching from the delete  view 
     fetch(`/delete/${id}`)
     //wait for the response and load home page for the latest updated list 
-    .then(() => load_home())
+    .then(() => location.reload())
 }
