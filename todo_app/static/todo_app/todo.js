@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="card-body">
                         <div class="card-title"><h5 style="float:right;"><small>${element.timestamp}</small></h5><h5 class="card-content" data-content="${element.body}">${element.body}</h5></div>
                         <button class="btn btn-primary translate-btn" style="margin-top:1%;" value="${element.id}">Translate</a>
-                        <button class="btn btn-danger delete-btn" style="margin-top:1%; float:right;" value="${element.id}">Delete</a>
+                        <button class="btn btn-danger delete-btn" style="margin-top:1%; float:right;" onclick="delete_task(this.value)" value="${element.id}">Delete</a>
                         </div>
                         </div>
                     `
@@ -78,8 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     //get all the buttons with translate-btn class 
                     let all = document.querySelectorAll(".translate-btn")
-                    //get all the buttons with delete-btn class 
-                    let all_delete = document.querySelectorAll(".delete-btn")
                     //get all the content of the cards to translate 
                     let title = document.querySelectorAll(".card-content")
                    
@@ -105,15 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 let id = all[i].value
                                 translated_update(id);
                         }); 
-                        all_delete[i].addEventListener('click', function(){
-                            //ge the id value of the task and then send it to the js delete function
-                            let id = all_delete[i].value
-                              //fetch the delete view 
-                              fetch(`/delete/${id}`)
-                              //wait for the response and load home page for the latest updated list 
-                              .then(() => load_home())
-                        });
-                        
+            
                      }
                      
                 }
@@ -185,7 +175,7 @@ function userpage(id){
 
 //This function is to update the translated field in the task model using the PUT method 
 function translated_update(id){
-    //fetching fromthe view 
+    //fetching from the update view 
     fetch(`/update/${id}`,{
         //send the request using the POST method 
         method:'PUT',
@@ -195,4 +185,12 @@ function translated_update(id){
         translate: true
      })
  })
+}
+
+//This function is to delete the task model using the delete view 
+function delete_task(id){
+    //fetching from the delete  view 
+    fetch(`/delete/${id}`)
+    //wait for the response and load home page for the latest updated list 
+    .then(() => load_home())
 }
