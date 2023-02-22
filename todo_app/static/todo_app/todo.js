@@ -1,26 +1,5 @@
 //Waiting for the DOM to Load 
 document.addEventListener('DOMContentLoaded', function() {
-    
-    //onsubmiting the form fetch the create view and then reload the page to 
-    document.querySelector('#todo-form').onsubmit = () =>{
-        new_task = document.querySelector('#task').value
-        // fetch the create view function 
-        fetch('/create',{
-            //send the request using the POST method 
-            method:'POST',
-            //send the data to the function in the body after stringify it 
-            body: JSON.stringify({
-            //send the data thru the task     
-            task: new_task
-        })
-     })
-     //loading the home content after receiving the promise to get the latest task entered
-    .then(response => response.json())
-    .then(result => {
-        console.log(result);
-        load_home();
-      }); 
-    }
 
     //by default load the home page content
     load_home();
@@ -66,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="card" style="width:100%;">
                         <div class="card-body">
                         <div class="card-title"><h5 style="float:right;"><small>${element.timestamp}</small></h5><h5 class="card-content" data-content="${element.body}">${element.body}</h5></div>
-                        <button class="btn btn-primary translate-btn" style="margin-top:1%;" value="${element.id}">Translate</a>
+                        <button class="btn btn-primary translate-btn" style="margin-top:1%;" onclick="translated_update(this.value);" value="${element.id}">Translate</a>
                         <button class="btn btn-danger delete-btn" style="margin-top:1%; float:right;" onclick="delete_task(this.value)" value="${element.id}">Delete</a>
                         </div>
                         </div>
@@ -97,11 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 .then(new_content =>{
                                     //get the content of the exact element and translate it
                                 title[i].innerHTML = `${new_content}`
-                                }) 
-
-                                //ge the id value of the task and then send it to the js translated_update function
-                                let id = all[i].value
-                                translated_update(id);
+                                })     
                         }); 
             
                      }
@@ -111,8 +86,30 @@ document.addEventListener('DOMContentLoaded', function() {
             })
 
       });
-    }    
+    } 
     
+    //onsubmiting the form fetch the create view and then reload the page to 
+    document.querySelector('#todo-form').onsubmit = () =>{
+        new_task = document.querySelector('#task').value
+        // fetch the create view function 
+        fetch('/create',{
+            //send the request using the POST method 
+            method:'POST',
+            //send the data to the function in the body after stringify it 
+            body: JSON.stringify({
+            //send the data thru the task     
+            task: new_task
+        })
+     })
+     //loading the home content after receiving the promise to get the latest task entered
+    .then(response => response.json())
+    .then(result => {
+        console.log(result);
+        load_home();
+      }); 
+    }
+    
+
 });
 
 
