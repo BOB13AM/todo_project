@@ -14,7 +14,7 @@ Regular User:
 
 6- Upon clicking translate, the text will be translated to french and the translate button will be disabled
 
-7- Upon clicking refresh the system will reload the app and the original language of each task will apear agian
+7- Upon clicking refresh the system will reload the app and the original language of each task will appear agian
 
 8- If the user clicks the delete button the task item will be removed from the todo list (deleted from the DataBase)
 
