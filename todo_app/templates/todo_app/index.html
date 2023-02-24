@@ -19,13 +19,14 @@
     <div style="display:none;">
     {%else%}
     <h4 class="marg_btm">Your To Do List</h4>
-    <div style="display:block;">
+    <div style="display:block; width: 100%; margin-left: 2%;">
     {%endif%}
 
         <form id="todo-form">
             <div class="input-group mb-3 marg_btm">
+                <button class="btn btn-outline-secondary" onclick="location.reload()" type="button">Refresh</button>
                 <input required autofocus id="task" type="text" class="form-control" placeholder="New Task - Translate Any Task to French">
-                <input class="btn btn-outline-secondary" type="submit" id="button-addon2" value="Add">
+                <input class="btn btn-outline-success" type="submit" id="button-addon2" value="Add">
             </div>
         </form>
     </div>

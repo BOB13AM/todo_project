@@ -4,13 +4,15 @@
     list-style-type: none;
     box-shadow: 0 0 1px rgb(0, 0, 0);
     transition: ease-in 280ms;
-    
+    animation-name: hide;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
 }
 .todo_li:hover{
     transition: ease-out 280ms;
     transform: scale(1.009);
     box-shadow: 0 0 3px rgb(0, 0, 0);
-
 }
 
 .box{
@@ -20,4 +22,29 @@
 
 .marg_btm{
     margin-bottom:3%;
+}
+
+
+@keyframes hide {
+    0% {
+        opacity: 1;
+        height: 100%;
+        line-height: 100%;
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+    75% {
+        opacity: 0;
+        height: 100%;
+        line-height: 100%;
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+    100% {
+        opacity: 0;
+        height: 0px;
+        line-height: 0px;
+        padding: 0px;
+        margin-bottom: 0px;
+    }
 }

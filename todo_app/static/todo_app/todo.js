@@ -39,15 +39,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     //create the ul element
                     const li = document.createElement('li')
                     //fill up the li class
-                    li.setAttribute("class", "todo_li")
+                    li.setAttribute("class", "todo_li card")
+                    //fill up the li style
+                    li.setAttribute("style", "width:100%;")
                     //filling up an html var to add it to the li innerHTML
                     let html=`
-                        <div class="card" style="width:100%;">
                         <div class="card-body">
                         <div class="card-title"><h5 style="float:right;"><small>${element.timestamp}</small></h5><h5 class="card-content" data-content="${element.body}">${element.body}</h5></div>
                         <button class="btn btn-primary translate-btn" style="margin-top:1%;" onclick="translated_update(this.value);" value="${element.id}">Translate</a>
-                        <button class="btn btn-danger delete-btn" style="margin-top:1%; float:right;" onclick="delete_task(this.value)" value="${element.id}">Delete</a>
-                        </div>
+                        <button class="btn btn-danger delete-btn" style="margin-top:1%; float:right;" onclick="delete_task(this.value);" value="${element.id}">Delete</a>
                         </div>
                     `
                     //adding the html to the li
@@ -59,6 +59,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     let all = document.querySelectorAll(".translate-btn")
                     //get all the content of the cards to translate 
                     let title = document.querySelectorAll(".card-content")
+                    //get all the buttons with delete-btn class
+                    let all_delete = document.querySelectorAll(".delete-btn")
+                    //get all the todo list 
+                    let all_list = document.querySelectorAll(".todo_li")
                    
                     //loop over all the button to detect which one is pressed 
                         for(let i=0; i<all.length; i++){               
@@ -78,6 +82,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                 title[i].innerHTML = `${new_content}`
                                 })     
                         }); 
+
+                        all_delete[i].addEventListener('click', function(){
+                            let target = all_list[i]
+                            target.style.animationPlayState = 'running';
+                            target.addEventListener('animationend', () => {
+                                target.remove();
+                            });  
+                        })
             
                      }
                      
@@ -188,6 +200,9 @@ function translated_update(id){
 function delete_task(id){
     //fetching from the delete  view 
     fetch(`/delete/${id}`)
-    //wait for the response and load home page for the latest updated list 
-    .then(() => location.reload())
+    .then(response =>response.json())
+    .then(result => {
+        console.log(result)
+    })
+
 }

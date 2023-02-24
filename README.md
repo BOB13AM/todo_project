@@ -14,19 +14,21 @@ Regular User:
 
 6- Upon clicking translate, the text will be translated to french and the translate button will be disabled
 
-7- If the user clicks the delete button the task item will be removed from the todo list (deleted from the DataBase)
+7- Upon clicking refresh the system will reload the app and the original language of each task will apear agian
 
-8- If the user clicks on the log out button the user will be redirected to the log in page
+8- If the user clicks the delete button the task item will be removed from the todo list (deleted from the DataBase)
+
+9- If the user clicks on the log out button the user will be redirected to the log in page
 
 Admin User:
 
-9- Upon logging in as an admin, the user will see all the registered users as a clickable item on the home page. Their username, and Email will be displayed
+10- Upon logging in as an admin, the user will see all the registered users as a clickable item on the home page. Their username, and Email will be displayed
 
-10- Upon clicking on a user, the user's history will show. displaying each individual task, date 
+11- Upon clicking on a user, the user's history will show. displaying each individual task, date 
 
-11- If the task was translated it will be marked as green with a title ("User translated this task")
+12- If the task was translated it will be marked as green with a title ("User translated this task")
 
-12- Upon clicking on the home button the user will be redirected to the home page
+13- Upon clicking on the home button the user will be redirected to the home page
 
-13- If the admin clicks on the log out button the admin will be redirected to the log in page
+14- If the admin clicks on the log out button the admin will be redirected to the log in page
 
